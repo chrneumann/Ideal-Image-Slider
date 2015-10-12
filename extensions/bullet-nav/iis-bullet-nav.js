@@ -25,7 +25,7 @@
 		}.bind(this));
 	};
 
-	IIS.Slider.prototype.addBulletNav = function() {
+	IIS.Slider.prototype.addBulletNav = function(navContainer) {
 		IIS._addClass(this._attributes.container, 'iis-has-bullet-nav');
 
 		// Create bullet nav
@@ -49,7 +49,11 @@
 		}.bind(this));
 
 		this._attributes.bulletNav = bulletNav;
-		this._attributes.container.appendChild(bulletNav);
+		if (navContainer) {
+			document.querySelector(navContainer).appendChild(bulletNav);
+		}else {
+			this._attributes.container.appendChild(bulletNav);
+		}
 		_updateActiveBullet(this, 0);
 
 		// Hook up to afterChange events
